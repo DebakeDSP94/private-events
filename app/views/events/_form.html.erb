@@ -1,0 +1,24 @@
+<%= simple_form_for @event do |f| %>
+  <% if event.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <h1>New Event</h1>
+      <%= f.input :title %>
+      <%= f.input :description, as: :text %>
+      <%= f.input :location, as: :text %>
+      <%= f.input :date, as: :datetime %>
+      <%= f.submit class: 'btn btn-outline-primary' %>
+    </div>
+  </div>
+<% end %>

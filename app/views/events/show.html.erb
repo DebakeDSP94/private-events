@@ -1,0 +1,11 @@
+<div class="container"> 
+  <div class="card text-center">
+    <%= render @event %>
+    <p>
+      <%= link_to "Edit this event", edit_event_path(@event) %> |
+      <%= link_to "Back to events", events_path %> |
+      <%= link_to "Delete this event", @event, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </p>
+  </div>
+</div>
+

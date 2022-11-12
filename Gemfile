@@ -72,3 +72,13 @@ group :test do
 end
 
 gem 'devise', '~> 4.8', '>= 4.8.1'
+
+gem 'name_of_person', '~> 1.1', '>= 1.1.1'
+
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
+
+gem 'sidekiq', '~> 7.0', '>= 7.0.1'
+
+gem 'bootstrap', '~> 5.2', '>= 5.2.2'
+
+gem 'simple_form', '~> 5.1'
