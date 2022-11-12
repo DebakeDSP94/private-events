@@ -1,0 +1,22 @@
+<p>
+  <strong>Event title:</strong>
+  <%= event.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= event.description %>
+</p>
+<p>
+  <strong>Created by:</strong>
+  <%= event.creator.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= event.location %>
+</p>
+<p>
+  <strong>Date & Time:</strong>
+  <%= event.date.strftime("%m/%d/%Y") %> |
+  <%= event.date.strftime("%H:%M") %>
+</p>

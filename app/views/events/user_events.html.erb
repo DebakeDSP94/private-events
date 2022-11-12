@@ -1,0 +1,56 @@
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Events</h1>
+      <p class="lead text-muted">Available events are displayed below.  Feel free to create an event and invite guests. Past events are at the bottom of the page.</p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% current_user.events.future.each do |event| %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <p class="card-text">  <%= render 'event', event: event %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary"><%= link_to "Show event", event %>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-primary"><%= link_to "Edit event", edit_event_path(event) %>
+                  </button>
+                </div>
+                <small class="text-muted">Created <%= distance_of_time_in_words(event.created_at, Time.now) %> ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+</div>
+<hr>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% current_user.events.past.each do |event| %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <p class="card-text">  <%= render 'event', event: event %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-primary"><%= link_to "Show event", event %>
+                  </button>
+                </div>
+                <small class="text-muted">Created <%= distance_of_time_in_words(event.created_at, Time.now) %> ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+</div>
