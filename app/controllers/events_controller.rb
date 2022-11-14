@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[ index show ]
+  before_action :set_event, only: %i[ show edit update destroy rsvp cancel]
   def new
     @event = Event.new
   end
@@ -9,6 +9,9 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def user_rsvps
+    @events = Event.all
+  end
   def edit
   end
 
@@ -47,6 +50,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def rsvp
+    if @event.attendees.include?(current_user)
+      redirect_to event_url(@event), notice: "You have already RSVP'd to this event"
+    else
+      @event.attendees << current_user
+      redirect_to event_url(@event)
+    end
+  end
+
+  def cancel
+    @event.attendees.delete(current_user)
+    redirect_to event_url(@event), notice: "You have successfully cancelled your RSVP"
+  end
   private
 
   def set_event

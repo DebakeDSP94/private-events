@@ -8,5 +8,6 @@ class User < ApplicationRecord
 
   has_person_name
   has_many :events
-
+  has_many :rsvps, foreign_key: :invited_event_id
+  has_many :attended_events, through: :rsvps 
 end
