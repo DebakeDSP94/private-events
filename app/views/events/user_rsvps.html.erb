@@ -1,0 +1,65 @@
+<section class="py-2 text-center container">
+  <div class="row py-lg-2">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h1 class="fw-light">Events</h1>
+      <p class="lead text-muted">Your RSVP'd events are displayed below.  Past events are at the bottom of the page.</p>
+    </div>
+  </div>
+</section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% @events.future.each do |event| %>
+        <% if event.attendees.include?(current_user) %> 
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <p class="card-text"> 
+                <%= render 'event', event: event %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <%= link_to "Show event", event, class: "btn btn-sm btn-primary" %>
+                  <% if current_user == event.creator %>
+                    <%= link_to 'Edit event', edit_event_path(event), class: "btn btn-sm btn-primary" %>
+                  <% else %>
+                    <% if event.attendees.include?(current_user) %>
+                      <%= link_to "Cancel", cancel_event_path(event), class: "btn btn-sm btn-danger" %>
+                    <% else %>
+                      <%= link_to "RSVP", rsvp_event_path(event), class: "btn btn-sm btn-success" %>
+                    <% end %>
+                  <% end %>
+                  <small class="text-muted">Created <%= distance_of_time_in_words(event.created_at, Time.now) %> ago</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>  
+    </div>  
+  </div>
+</div>
+<hr>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center">Past Events</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% @events.past.each do |event| %>
+        <% if event.attendees.include?(current_user) %> 
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <p class="card-text">  
+                  <%= render 'event', event: event %></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <%= link_to "Show event", event, class: "btn btn-sm btn-primary" %>                   
+                  </div>
+                  <small class="text-muted">Created <%= distance_of_time_in_words(event.created_at, Time.now) %> ago</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>  
+  </div>
+</div>
