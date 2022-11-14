@@ -34,7 +34,7 @@ class EventsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @event.update(event.params)
+      if @event.update(event_params)
         format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
