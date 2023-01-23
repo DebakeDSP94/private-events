@@ -1,8 +1,8 @@
-<div class="container"> 
+<div class="container">
   <div class="card text-center">
     <%= render @event %>
-    <div class="d-grid gap-2 col-6 mx-auto"> 
-    <% if @event.date > Time.now %> 
+    <div class="d-grid gap-2 col-6 mx-auto">
+    <% if @event.date > Time.now %>
       <% if @event.attendees.include?(current_user) %>
         <%= link_to "Cancel", cancel_event_path(@event), class: "btn btn-danger" %>
       <% else %>
@@ -12,19 +12,22 @@
     </div>
     <br>
     <p>
+    <% if current_user == @event.creator %>
       <%= link_to "Edit this event", edit_event_path(@event) %> |
-      <%= link_to "Back to events", events_path %> |
-      <%= link_to "Delete this event", @event, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    </p>
-  
+      <%= link_to "Delete this event", @event, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %> |
+      <% end %>
+      <%= link_to "Back to events", events_path %>
 
-<div class="container"> 
+    </p>
+
+
+<div class="container">
   <div class="card text-center">
     <p>
       <%= render 'attendees', event: @event %>
     </p>
   </div>
 </div>
-  
+
 
 

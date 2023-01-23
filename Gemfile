@@ -82,3 +82,4 @@ gem 'sidekiq', '~> 7.0', '>= 7.0.1'
 gem 'bootstrap', '~> 5.2', '>= 5.2.2'
 
 gem 'simple_form', '~> 5.1'
+gem "ruby-lsp", "~> 0.3.6", :group => :development

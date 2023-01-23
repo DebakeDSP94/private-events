@@ -6,6 +6,6 @@ class Event < ApplicationRecord
 
   validates :title, :date, :location, :description, presence: true
 
-  scope :past, -> { where('date < ?', Date.today) }
-  scope :future, -> { where('date > ?', Date.today) }
+  scope :past, -> { where("date < ?", Date.today) }
+  scope :future, -> { where("date > ?", Date.today) }
 end
